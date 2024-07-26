@@ -7,9 +7,11 @@ abstract class ImageEvent {
 class GetImageList extends ImageEvent {
   final int pageNumber;
   final bool firstLoad;
+  int fetchedPerPage = 10; //default value
 
-  const GetImageList({
+  GetImageList({
     required this.pageNumber,
     required this.firstLoad,
+    required this.fetchedPerPage,
   });
 }

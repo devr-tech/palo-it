@@ -10,12 +10,11 @@ class ImageAPI {
 
   ImageAPI({required this.client});
 
-  Future<Either<FailureModel, List<ImageDataModel>>> getImages(int pageNum) async {
+  Future<Either<FailureModel, List<ImageDataModel>>> getImages(int pageNum, int fetchedPerPage) async {
     try {
-      print("https://picsum.photos/v2/list?page=$pageNum");
 
       final response = await client.get(
-        Uri.parse("https://picsum.photos/v2/list?page=$pageNum&limit=15"),
+        Uri.parse("https://picsum.photos/v2/list?page=$pageNum&limit=$fetchedPerPage"),
       );
 
       if (response.statusCode < 300) {

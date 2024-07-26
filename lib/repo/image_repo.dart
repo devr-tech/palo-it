@@ -12,10 +12,10 @@ class ImageRepository {
   });
 
 
-  Future<Either<FailureModel, List<ImageDataModel>>> getImageList(int pageNum) async {
+  Future<Either<FailureModel, List<ImageDataModel>>> getImageList(int pageNum, int fetchedPerPage) async {
     try {
 
-      final result = await imageAPI.getImages(pageNum);
+      final result = await imageAPI.getImages(pageNum, fetchedPerPage);
 
       return result.fold((l) {
         return left(l);

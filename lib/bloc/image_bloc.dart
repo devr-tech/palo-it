@@ -39,12 +39,13 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
     on<GetImageList>((event, emit) async {
       try {
         if (event.firstLoad) {
+          state.images = [];
           emit(ImageLoading(images: state.images));
         }
         if (state.hasLoadMore == false) {
           return;
         }
-        final result = await imageAPI.getImages(event.pageNumber,);
+        final result = await imageAPI.getImages(event.pageNumber, event.fetchedPerPage);
 
         result.fold((failure) {
           emit(ImageError(failure: failure));
